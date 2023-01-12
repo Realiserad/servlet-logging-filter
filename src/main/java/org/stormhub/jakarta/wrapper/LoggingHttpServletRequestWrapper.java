@@ -1,4 +1,4 @@
-package jakarta.servlet.filter.logging.wrapper;
+package org.stormhub.jakarta.wrapper;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
