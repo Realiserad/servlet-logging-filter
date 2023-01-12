@@ -6,7 +6,12 @@ Servlet filter for logging HTTP requests and responses as JSON.
 
 Forked from Libor Ondrušek's code and refactored to be compatible with Jakarta EE.
 
+## Java compatibility
+
 This project is based on Java 17, but can be built on Java 11 if you skip the tests.
+```
+mvn clean package -Dmaven.test.skip=true -Dmaven.site.skip=true -Dmaven.javadoc.skip=true
+```
 
 ## Usage
 
