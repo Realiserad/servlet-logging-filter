@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-logging-filter</artifactId>
-    <version>1.3.0</version>
+    <groupId>org.stormhub.jakarta</groupId>
+    <artifactId>servlet-logging-filter</artifactId>
+    <version>1.0.0</version>
 
-    <name>Servlet logging filter</name>
-    <description>Servlet filter for logging requests and responses</description>
-    <url>http://librucha.github.io/servlet-logging-filter</url>
+    <name>servlet-logging-filter</name>
+    <description>Jakarta EE-compatible servlet filter for logging HTTP requests and responses.</description>
+    <url>https://github.com/Realiserad/servlet-logging-filter</url>
 
     <licenses>
         <license>
@@ -19,24 +19,24 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/librucha/servlet-logging-filter</url>
+        <url>https://github.com/Realiserad/servlet-logging-filter</url>
     </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <assertj-core.version>3.21.0</assertj-core.version>
         <commons-io.version>2.11.0</commons-io.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <jackson.version>2.13.0</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
         <logback.version>1.2.6</logback.version>
         <mockito-core.version>3.12.4</mockito-core.version>
-        <servlet.version>4.0.1</servlet.version>
-        <slf4j.version>1.7.32</slf4j.version>
-        <spring.version>5.3.10</spring.version>
+        <servlet.version>6.0.0</servlet.version>
+        <slf4j.version>2.0.6</slf4j.version>
+        <spring.version>6.0.3</spring.version>
         <junit.version>5.8.1</junit.version>
         <mockito-junit.version>2.23.0</mockito-junit.version>
     </properties>
@@ -53,8 +53,8 @@
             <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -125,5 +125,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

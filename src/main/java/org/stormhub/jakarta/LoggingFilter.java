@@ -1,4 +1,4 @@
-package javax.servlet.filter.logging;
+package org.stormhub.jakarta;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -7,18 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.filter.logging.entity.LoggingRequest;
-import javax.servlet.filter.logging.entity.LoggingResponse;
-import javax.servlet.filter.logging.wrapper.LoggingHttpServletRequestWrapper;
-import javax.servlet.filter.logging.wrapper.LoggingHttpServletResponseWrapper;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.filter.logging.wrapper.LoggingHttpServletRequestWrapper;
+import jakarta.servlet.filter.logging.wrapper.LoggingHttpServletResponseWrapper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,25 +30,15 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class LoggingFilter implements Filter {
-
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
 	private Logger log = getLogger(getClass());
-
 	private int maxContentSize;
-
 	private Set<String> excludedPaths;
-
 	private String requestPrefix;
-
 	private String responsePrefix;
-
 	private Marker requestMarker;
-
 	private Marker responseMarker;
-
 	private boolean disableMarker;
-
 	private boolean disablePrefix;
 
 	static {
@@ -218,19 +206,13 @@ public class LoggingFilter implements Filter {
 	}
 
 	public static class Builder {
-
 		private String loggerName = LoggingFilter.class.getName();
-
 		private int maxContentSize = 1024;
-
 		private Set<String> excludedPaths = emptySet();
-
 		private Marker requestMarker = MarkerFactory.getMarker("REQUEST");
 		private String requestPrefix = requestMarker.getName() + ": ";
-
 		private Marker responseMarker = MarkerFactory.getMarker("RESPONSE");
 		private String responsePrefix = responseMarker.getName() + ": ";
-
 		private boolean disableMarker;
 		private boolean disablePrefix;
 

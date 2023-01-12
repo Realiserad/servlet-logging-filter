@@ -1,13 +1,13 @@
-package javax.servlet.filter.logging.wrapper;
+package jakarta.servlet.filter.logging.wrapper;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.ReadListener;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.ReadListener;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -26,15 +26,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LoggingHttpServletRequestWrapper extends HttpServletRequestWrapper {
-
 	private static final String FORM_CONTENT_TYPE = "application/x-www-form-urlencoded";
-
 	private static final String METHOD_POST = "POST";
-
 	private byte[] content;
-
 	private final Map<String, String[]> parameterMap;
-
 	private final HttpServletRequest delegate;
 
 	public LoggingHttpServletRequestWrapper(HttpServletRequest request) {
@@ -147,7 +142,6 @@ public class LoggingHttpServletRequestWrapper extends HttpServletRequestWrapper 
 
 	@SuppressWarnings({"squid:S1150"})
 	private class ParamNameEnumeration implements Enumeration<String> {
-
 		private final Iterator<String> iterator;
 
 		private ParamNameEnumeration(Set<String> values) {
@@ -166,7 +160,6 @@ public class LoggingHttpServletRequestWrapper extends HttpServletRequestWrapper 
 	}
 
 	private class LoggingServletInputStream extends ServletInputStream {
-
 		private final InputStream is;
 
 		private LoggingServletInputStream(byte[] content) {

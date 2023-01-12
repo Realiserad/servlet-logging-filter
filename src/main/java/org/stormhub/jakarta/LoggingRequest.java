@@ -1,22 +1,15 @@
-package javax.servlet.filter.logging.entity;
+package org.stormhub.jakarta;
 
 import java.io.Serializable;
 import java.util.Map;
 
 public class LoggingRequest implements Serializable {
-
 	private static final long serialVersionUID = -4702574169916528738L;
-
 	private String sender;
-
 	private String method;
-
 	private String path;
-
 	private Map<String, String> params;
-
 	private Map<String, String> headers;
-
 	private String body;
 
 	public String getSender() {

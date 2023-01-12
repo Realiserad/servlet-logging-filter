@@ -1,60 +1,72 @@
 # Servlet logging filter
-Java 11 Servlet filter for logging requests and responses
 
-Web page equivalent is [here](http://librucha.github.io/servlet-logging-filter)
+Servlet filter for logging HTTP requests and responses as JSON.
+
+Forked from Libor Ondrušek's code and refactored to be compatible with Jakarta EE.
+
+This project is based on Java 17, but can be built on Java 11 if you skip the tests.
 
 ## Usage
-Filter implements **javax.servlet.Filter** from Servlet API 4.0.1
-You can register the filter using **web.xml** descriptor.
+
+The filter implements the ``jakarta.servlet.Filter`` from Jakarta Servlet API 6.
+
+You can register by editing ``WEB-INF/web.xml``, and adding the following XML:
 ```xml
 <filter>
 	<filter-name>LoggingFilter</filter-name>
-	<filter-class>javax.servlet.filter.logging.LoggingFilter</filter-class>
+	<filter-class>jakarta.servlet.filter.logging.LoggingFilter</filter-class>
+	<init-param>
+       <param-name>loggerName</param-name>
+       <param-value>MyLogger</param-value>
+   </init-param>
 </filter>
 <filter-mapping>
 	<filter-name>LoggingFilter</filter-name>
 	<url-pattern>/*</url-pattern>
 </filter-mapping>
 ```
-or **javax.servlet.ServletContext**
+
+Or, by dynamically registering an instance of ``LoggingFilter`` in ``jakarta.servlet.ServletContext`` like this:
 ```java
-public void onStartup(ServletContext servletContext) throws ServletException {
-	Dynamic registration = servletContext.addFilter("LoggingFilter", new LoggingFilter());
-	registration.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
+public void onStartup(final ServletContext servletContext) throws ServletException {
+    final Dynamic registration = servletContext.addFilter("LoggingFilter", new LoggingFilter());
+    registration.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
 }
 ```
-### Init params
-|Name          |Default   |Description                                              |
-|--------------|----------|---------------------------------------------------------|
-|loggerName    |class name|Logger name for output                                   |
-|maxContentSize|1024 bytes|Maximal logged body size in bytes                        |
-|excludedPaths |empty     |Comma sepparated list of URL prefixes e.g.: "/api,/admin"|
-|requestPrefix |REQUEST:  |First word on request output line                        |
-|responsePrefix|RESPONSE: |First word on response output line                       |
-|requestMarker |RESPONSE  |Slf4J marker for request                                 |
-|responseMarker|RESPONSE  |Slf4J marker for response                                |
-|disablePrefix |false     |No prefixes are logged if true                           |
-|disableMarkers|false     |No Slf4J markers are logged if true                           |
+### Initialisation parameters
+| Name           | Default    | Description                                                                        |
+|----------------|------------| -----------------------------------------------------------------------------------|
+| loggerName     | Class name | Logger name for output.                                                            |
+| maxContentSize | 1024 bytes | The maximal logged body size in bytes.                                             |
+| excludedPaths  | empty      | Comma separated list of URL prefixes to exclude from logging, e.g.: "/api,/admin". |
+| requestPrefix  | REQUEST:   | TheFirst word on the request output line.                                          |
+| responsePrefix | RESPONSE:  | First word on response output line.                                                |
+| requestMarker  | RESPONSE   | Slf4J marker for the request.                                                      |
+| responseMarker | RESPONSE   | Slf4J marker for the response.                                                     |
+| disablePrefix  | false      | No prefixes are logged if set to ``true``.                                         |
+| disableMarkers | false      | No Slf4J markers are logged if set to ``true``.                                    |
 
 ## Customization
-There are few methods for rewrite if you want:
+There are few methods for you to rewrite if you want:
 
-### Main filter processing
+The filtering business logic is done in ``doFilter``:
 ```java
-javax.servlet.filter.logging.LoggingFilter.doFilter
+jakarta.servlet.filter.logging.LoggingFilter.doFilter
 ```
 
-### Creating description of request. Default is create JSON object.
+A description of the request is done in ``getRequestDescription``. The default is to create a JSON object.
 ```java
-javax.servlet.filter.logging.LoggingFilter.getRequestDescription
+jakarta.servlet.filter.logging.LoggingFilter.getRequestDescription
 ```
 
-### Creating description of response. Default is create JSON object.
+A description of the request is done in ``getResponseDescription``. The default is to create a JSON object.
 ```java
-javax.servlet.filter.logging.LoggingFilter.getResponseDescription
+jakarta.servlet.filter.logging.LoggingFilter.getResponseDescription
 ```
 
-## Output
+## Example output
+
+Here is an example of what the output could look like:
 ```
 REQUEST: {"sender": "127.0.0.1", "method": "GET", "path": "http://localhost:8080/test", "params": {"param1": "1000"}, "headers": {"Accept": "application/json", "Content-Type":"text/plain"}, "body": "Test request body"}
 RESPONSE: {"status":200,"headers":{"Content-Type":"text/plain"},"body":"Test response body"}

@@ -1,16 +1,12 @@
-package javax.servlet.filter.logging.entity;
+package org.stormhub.jakarta;
 
 import java.io.Serializable;
 import java.util.Map;
 
 public class LoggingResponse implements Serializable {
-
 	private static final long serialVersionUID = -6692682176015358216L;
-
 	private int status;
-
 	private Map<String, String> headers;
-
 	private String body;
 
 	public int getStatus() {
