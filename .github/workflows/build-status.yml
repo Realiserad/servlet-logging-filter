@@ -10,4 +10,6 @@ jobs:
     steps:
       - name: Setup Maven
         uses: s4u/setup-maven-action@v1.6.0
+        with:
+          java-version: 17
       - run: mvn package
