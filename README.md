@@ -78,3 +78,5 @@ Here is an example of what the output could look like:
 REQUEST: {"sender": "127.0.0.1", "method": "GET", "path": "http://localhost:8080/test", "params": {"param1": "1000"}, "headers": {"Accept": "application/json", "Content-Type":"text/plain"}, "body": "Test request body"}
 RESPONSE: {"status":200,"headers":{"Content-Type":"text/plain"},"body":"Test response body"}
 ```
+
+Log lines are written on DEBUG level.
