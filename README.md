@@ -8,13 +8,13 @@ This project is based on Java 17, but can be built on Java 11 if you skip the te
 
 ## Usage
 
-The filter implements the ``jakarta.servlet.Filter`` from Jakarta Servlet API 6.
+The filter implements the ``jakarta.servlet.Filter`` interface from Jakarta Servlet API 6.
 
 You can register by editing ``WEB-INF/web.xml``, and adding the following XML:
 ```xml
 <filter>
 	<filter-name>LoggingFilter</filter-name>
-	<filter-class>jakarta.servlet.filter.logging.LoggingFilter</filter-class>
+	<filter-class>org.stormhub.jakarta.LoggingFilter</filter-class>
 	<init-param>
        <param-name>loggerName</param-name>
        <param-value>MyLogger</param-value>
