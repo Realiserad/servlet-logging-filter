@@ -1,4 +1,4 @@
-package jakarta.servlet.filter.logging.wrapper;
+package org.stormhub.jakarta.wrapper;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.WriteListener;

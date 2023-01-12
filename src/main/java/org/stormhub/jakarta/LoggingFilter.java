@@ -3,9 +3,13 @@ package org.stormhub.jakarta;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import org.stormhub.jakarta.wrapper.LoggingHttpServletRequestWrapper;
+import org.stormhub.jakarta.wrapper.LoggingHttpServletResponseWrapper;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -13,8 +17,6 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.filter.logging.wrapper.LoggingHttpServletRequestWrapper;
-import jakarta.servlet.filter.logging.wrapper.LoggingHttpServletResponseWrapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
