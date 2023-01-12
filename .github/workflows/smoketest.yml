@@ -1,0 +1,13 @@
+name: Smoketest
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+jobs:
+  create-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Maven
+        uses: s4u/setup-maven-action@1.6.0
+      - run: mvn package
