@@ -1,3 +1,5 @@
+[![Build status](https://github.com/Realiserad/servlet-logging-filter/actions/workflows/build-status.yml/badge.svg)](https://github.com/Realiserad/servlet-logging-filter/actions/workflows/build-status.yml)
+
 # Servlet logging filter
 
 Servlet filter for logging HTTP requests and responses as JSON.
